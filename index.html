@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#161513" />
+    <meta
+      name="description"
+      content="依放送月份整理日本動畫新番的開場曲（OP）與片尾曲（ED）。"
+    />
+    <title>新番 OP・ED 整理</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=Zen+Old+Mincho:wght@500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="masthead-inner">
+        <div class="brand">
+          <p class="eyebrow">Anime Song Index</p>
+          <h1>新番 OP・ED 整理</h1>
+          <p class="dek">依放送月份收錄日本動畫的開場曲與片尾曲。</p>
+        </div>
+        <form class="search" role="search">
+          <label for="q">搜尋作品、歌名或歌手</label>
+          <input
+            id="q"
+            type="search"
+            placeholder="例如：くるみちゃん"
+            autocomplete="off"
+            enterkeyhint="search"
+          />
+        </form>
+      </div>
+    </header>
+
+    <div class="shell">
+      <nav id="season-nav" class="season-nav" aria-label="放送月份"></nav>
+      <p id="summary" class="summary" aria-live="polite"></p>
+      <div id="list" class="list"></div>
+    </div>
+
+    <footer class="foot">
+      <p>影片嵌入自 YouTube。歌名與製作人員取自各作品公開資料。</p>
+    </footer>
+
+    <dialog id="viewer" class="viewer">
+      <div class="viewer-bar">
+        <button type="button" class="viewer-close">關閉</button>
+      </div>
+      <div class="viewer-stage"></div>
+      <p class="viewer-caption" lang="ja"></p>
+    </dialog>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
