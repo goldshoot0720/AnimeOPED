@@ -393,10 +393,13 @@ h1 {
 }
 
 .viewer {
-  width: min(1280px, calc(100vw - 32px));
-  max-height: none;
+  display: flex;
+  flex-direction: column;
+  width: min(1280px, calc(100% - 32px));
+  max-height: calc(100dvh - 24px);
   padding: 0;
   border: 0;
+  overflow: hidden;
   background: var(--card);
   color: var(--ink);
 }
@@ -406,6 +409,7 @@ h1 {
 }
 
 .viewer-bar {
+  flex: none;
   display: flex;
   justify-content: flex-end;
   padding: 8px 8px 0;
@@ -423,6 +427,10 @@ h1 {
 }
 
 .viewer-stage {
+  flex: none;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
   padding: 4px 12px 0;
 }
 
@@ -439,6 +447,7 @@ h1 {
 }
 
 .viewer-caption {
+  flex: none;
   margin: 0;
   padding: 10px 14px 14px;
   font-family: var(--mincho);
@@ -585,7 +594,7 @@ h1 {
   }
 
   .viewer {
-    width: calc(100vw - 20px);
+    width: calc(100% - 20px);
   }
 
   .viewer-stage {

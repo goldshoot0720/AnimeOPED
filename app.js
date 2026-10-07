@@ -316,12 +316,36 @@
 
   var viewerLarge = false;
 
-  function fitViewer() {
+  // 瀏覽器放大後視窗變矮。16:9 若仍依寬度撐開，關閉鈕和說明會被視窗裁掉。
+  function layoutViewer() {
     var fit = viewerStage.querySelector(".viewer-fit");
+    if (!fit || !viewer.open) return 0;
+
+    viewer.style.width = "";
+    fit.style.width = "100%";
+    fit.style.height = "";
+
+    var stageCss = getComputedStyle(viewerStage);
+    var padX = parseFloat(stageCss.paddingLeft) + parseFloat(stageCss.paddingRight);
+    var padY = parseFloat(stageCss.paddingTop) + parseFloat(stageCss.paddingBottom);
+    var bar = viewer.querySelector(".viewer-bar");
+    var viewport = window.visualViewport;
+    var viewportH = viewport ? viewport.height : window.innerHeight;
+    var maxW = viewerStage.clientWidth - padX;
+    var maxH = viewportH - 24 - bar.offsetHeight - viewerCaption.offsetHeight - padY;
+    if (!(maxW > 0) || !(maxH > 0)) return 0;
+
+    var width = Math.min(maxW, (maxH * 16) / 9);
+    fit.style.width = width + "px";
+    fit.style.height = (width * 9) / 16 + "px";
+    if (width < maxW - 0.5) viewer.style.width = width + padX + "px";
+    return width;
+  }
+
+  function fitViewer() {
+    var width = layoutViewer();
     var scale = viewerStage.querySelector(".viewer-scale");
-    if (!fit || !scale || !viewerLarge) return;
-    var width = fit.clientWidth;
-    if (!width) return;
+    if (!viewerLarge || !scale || !width) return;
     scale.style.transform = "scale(" + width / 1920 + ")";
   }
 
@@ -349,7 +373,7 @@
     fit.appendChild(scale);
     viewerStage.appendChild(fit);
 
-    var width = fit.clientWidth;
+    var width = layoutViewer();
     // YouTube 依播放器尺寸選畫質。先以 1920×1080 載入再縮小，預設才會優先 1080p。
     if (width >= 960) {
       viewerLarge = true;
@@ -359,7 +383,7 @@
       frame.height = 1080;
       frame.style.width = "1920px";
       frame.style.height = "1080px";
-      fitViewer();
+      scale.style.transform = "scale(" + width / 1920 + ")";
     }
 
     frame.src =
@@ -381,11 +405,13 @@
   });
   viewer.addEventListener("close", function () {
     viewerLarge = false;
+    viewer.style.width = "";
     viewerStage.replaceChildren();
     viewerCaption.textContent = "";
     if (viewerOpener) viewerOpener.focus();
   });
   window.addEventListener("resize", fitViewer);
+  if (window.visualViewport) window.visualViewport.addEventListener("resize", fitViewer);
 
   search.addEventListener("input", render);
   document.querySelector(".search").addEventListener("submit", function (event) {
