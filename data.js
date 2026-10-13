@@ -72,6 +72,16 @@ var CATALOG = [
               },
             ],
           },
+          {
+            role: "ED",
+            title: "ぴ",
+            artist: "ナナヲアカリ",
+            youtubeLabel: "山あり谷あり、穴もあり。ver.",
+            credits: [
+              { label: "作詞・作曲・編曲", value: "ヤマモトショウ" },
+            ],
+            youtube: "https://www.youtube.com/watch?v=ez8Uv-pi0Jg",
+          },
         ],
       },
     ],
