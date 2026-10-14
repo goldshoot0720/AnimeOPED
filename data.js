@@ -86,4 +86,39 @@ var CATALOG = [
       },
     ],
   },
+  {
+    year: 2026,
+    month: 7,
+    anime: [
+      {
+        id: "bang-dream-yumemita",
+        title: "バンドリ！ ゆめ∞みた",
+        kana: "ばんどりゆめみた",
+        start: "2026-07-02",
+        studio: "ニチカライン",
+        official: "https://anime.bang-dream.com/yumemita/",
+        themes: [
+          {
+            role: "OP",
+            title: "これはぼくたちの生存のあらすじ",
+            artist: "夢限大みゅーたいぷ",
+            credits: [
+              { label: "作詞・作曲", value: "田淵智也" },
+              { label: "編曲", value: "堀江晶太" },
+            ],
+            youtube: "https://www.youtube.com/watch?v=Ech7Tj8ga0Y",
+          },
+          {
+            role: "ED",
+            title: "うちゅうのふしぎ",
+            artist: "夢限大みゅーたいぷ",
+            credits: [
+              { label: "作詞・作曲・編曲", value: "sabio" },
+            ],
+            youtube: "https://www.youtube.com/watch?v=7xrs-MPYydw",
+          },
+        ],
+      },
+    ],
+  },
 ];
